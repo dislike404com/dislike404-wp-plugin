@@ -5,8 +5,8 @@ Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
 Stable tag: 1.0.0
-License: GPLv2 or later
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+License: MIT
+License URI: https://opensource.org/licenses/MIT
 
 Connect your WordPress site to dislike404.com and start website scans directly from your WordPress admin panel.
 
@@ -32,7 +32,7 @@ This plugin lets you start a scan directly from WordPress, either from the Setti
 
 = Privacy and External Services =
 
-This plugin connects to api.dislike404.com (https://api.dislike404.com) to trigger scans and retrieve scan results. The following data is transmitted:
+This plugin connects to api.dislike404.com (https://api.dislike404.com) to trigger scans and retrieve scan results. The following data is sent to dislike404.com:
 
 * Your API token (for authentication)
 * The UUID of the website you want to scan
