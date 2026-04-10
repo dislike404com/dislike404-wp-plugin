@@ -9,8 +9,8 @@
  * Requires PHP:      8.0
  * Author:            dislike404.com
  * Author URI:        https://dislike404.com
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * License:           MIT
+ * License URI:       https://opensource.org/licenses/MIT
  * Text Domain:       dislike404
  */
 
@@ -54,6 +54,8 @@ if (is_admin()) {
  */
 function dislike404_init(): void
 {
+    load_plugin_textdomain('dislike404', false, dirname(plugin_basename(DISLIKE404_PLUGIN_FILE)) . '/languages');
+
     $admin = new Dislike404_Admin();
     $admin->init();
 
@@ -62,11 +64,3 @@ function dislike404_init(): void
 }
 add_action('plugins_loaded', 'dislike404_init');
 
-/**
- * Clean up options on uninstall.
- */
-function dislike404_uninstall(): void
-{
-    delete_option(DISLIKE404_OPTION_KEY);
-}
-register_uninstall_hook(__FILE__, 'dislike404_uninstall');

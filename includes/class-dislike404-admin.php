@@ -70,11 +70,11 @@ class Dislike404_Admin
 
             <p>
                 <?php
-                printf(
+                echo wp_kses_post(sprintf(
                     /* translators: %s: link to dislike404.com */
-                    esc_html__('%s monitors your website for broken links, HTTP errors, and connection failures — and alerts you by email when something goes wrong.', 'dislike404'),
+                    __('%s monitors your website for broken links, HTTP errors, and connection failures — and alerts you by email when something goes wrong.', 'dislike404'),
                     '<a href="https://dislike404.com" target="_blank" rel="noopener noreferrer">dislike404.com</a>'
-                );
+                ));
                 ?>
             </p>
 
@@ -84,13 +84,13 @@ class Dislike404_Admin
 
             <p>
                 <?php
-                printf(
+                echo wp_kses_post(sprintf(
                     /* translators: %s: link to the WordPress plugin guide */
-                    esc_html__('New here? The %s walks you through the setup.', 'dislike404'),
+                    __('New here? The %s walks you through the setup.', 'dislike404'),
                     '<a href="https://dislike404.com/guides/wordpress-plugin/getting-started-with-the-wordpress-plugin" target="_blank" rel="noopener noreferrer">'
                         . esc_html__('WordPress plugin guide', 'dislike404')
                         . '</a>'
-                );
+                ));
                 ?>
             </p>
 
@@ -118,11 +118,11 @@ class Dislike404_Admin
                                 autocomplete="new-password">
                             <p class="description">
                                 <?php
-                                printf(
+                                echo wp_kses_post(sprintf(
                                     /* translators: %s: link to dislike404.com profile */
-                                    esc_html__('Generate your API token in your %s profile settings.', 'dislike404'),
+                                    __('Generate your API token in your %s profile settings.', 'dislike404'),
                                     '<a href="https://dislike404.com/user/profile" target="_blank" rel="noopener noreferrer">dislike404.com</a>'
-                                );
+                                ));
                                 ?>
                             </p>
                             <?php if ($api_error) : ?>
