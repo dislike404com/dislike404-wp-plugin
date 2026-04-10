@@ -1,4 +1,4 @@
-# dislike404.com Scanner — WordPress Plugin
+# dislike404.com Broken Link Checker — WordPress Plugin
 
 Connect your WordPress site to [dislike404.com](https://dislike404.com) and trigger website scans directly from your WordPress admin panel.
 

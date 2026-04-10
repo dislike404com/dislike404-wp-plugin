@@ -1,8 +1,8 @@
-=== dislike404.com Scanner ===
+=== dislike404.com Broken Link Checker ===
 Contributors: dislike404com
 Tags: 404 checker, broken link checker, broken links, website monitoring, website scanner
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 8.0
 Stable tag: 1.0.0
 License: MIT

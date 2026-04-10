@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Plugin Name:       dislike404.com - Free Automated 404 Checker
+ * Plugin Name:       dislike404.com Broken Link Checker
  * Plugin URI:        https://dislike404.com
  * Description:       Connect your WordPress site to dislike404.com and run 404 checks directly from your admin panel.
  * Version:           1.0.0
@@ -54,9 +54,7 @@ if (is_admin()) {
  */
 function dislike404_init(): void
 {
-    load_plugin_textdomain('dislike404', false, dirname(plugin_basename(DISLIKE404_PLUGIN_FILE)) . '/languages');
-
-    $admin = new Dislike404_Admin();
+$admin = new Dislike404_Admin();
     $admin->init();
 
     $admin_bar = new Dislike404_Admin_Bar();
