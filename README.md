@@ -24,7 +24,7 @@ dislike404.com monitors your website for broken links, HTTP errors, and connecti
 
 ## Installation
 
-1. Upload the `dislike404` folder to `/wp-content/plugins/`, or install via the WordPress plugin installer.
+1. Install the plugin via the WordPress plugin installer, or download it from [WordPress.org](https://wordpress.org/plugins/dislike404-broken-link-checker/).
 2. Activate the plugin through the **Plugins** menu in WordPress.
 3. Go to **Settings → dislike404.com** and enter your API token.
 4. Select the website you want to link to this WordPress installation.
