@@ -26,8 +26,8 @@ class Dislike404_Admin
     public function register_menu(): void
     {
         add_options_page(
-            __('dislike404.com Settings', 'dislike404'),
-            __('dislike404.com', 'dislike404'),
+            __('dislike404.com Settings', 'dislike404-broken-link-checker'),
+            __('dislike404.com', 'dislike404-broken-link-checker'),
             'manage_options',
             'dislike404',
             [$this, 'render_settings_page']
@@ -56,7 +56,7 @@ class Dislike404_Admin
             if ($result['success']) {
                 $urls = $result['data'];
             } else {
-                $api_error = __('Could not connect to dislike404.com. Please check your API token.', 'dislike404');
+                $api_error = __('Could not connect to dislike404.com. Please check your API token.', 'dislike404-broken-link-checker');
             }
         }
 ?>
@@ -65,30 +65,30 @@ class Dislike404_Admin
                 <img src="<?php echo esc_url(DISLIKE404_PLUGIN_URL . 'assets/logo.svg'); ?>"
                     alt="dislike404.com logo"
                     style="height:48px;vertical-align:middle;margin-right:8px;">
-                <?php esc_html_e('dislike404.com Settings', 'dislike404'); ?>
+                <?php esc_html_e('dislike404.com Settings', 'dislike404-broken-link-checker'); ?>
             </h1>
 
             <p>
                 <?php
                 echo wp_kses_post(sprintf(
                     /* translators: %s: link to dislike404.com */
-                    __('%s monitors your website for broken links, HTTP errors, and connection failures — and alerts you by email when something goes wrong.', 'dislike404'),
+                    __('%s monitors your website for broken links, HTTP errors, and connection failures — and alerts you by email when something goes wrong.', 'dislike404-broken-link-checker'),
                     '<a href="https://dislike404.com" target="_blank" rel="noopener noreferrer">dislike404.com</a>'
                 ));
                 ?>
             </p>
 
             <p>
-                <?php esc_html_e('This plugin lets you start a scan directly from WordPress, either from this page or from the admin bar at the top. No need to log in to dislike404.com every time.', 'dislike404'); ?>
+                <?php esc_html_e('This plugin lets you start a scan directly from WordPress, either from this page or from the admin bar at the top. No need to log in to dislike404.com every time.', 'dislike404-broken-link-checker'); ?>
             </p>
 
             <p>
                 <?php
                 echo wp_kses_post(sprintf(
                     /* translators: %s: link to the WordPress plugin guide */
-                    __('New here? The %s walks you through the setup.', 'dislike404'),
+                    __('New here? The %s walks you through the setup.', 'dislike404-broken-link-checker'),
                     '<a href="https://dislike404.com/guides/wordpress-plugin/getting-started-with-the-wordpress-plugin" target="_blank" rel="noopener noreferrer">'
-                        . esc_html__('WordPress plugin guide', 'dislike404')
+                        . esc_html__('WordPress plugin guide', 'dislike404-broken-link-checker')
                         . '</a>'
                 ));
                 ?>
@@ -105,7 +105,7 @@ class Dislike404_Admin
                     <tr>
                         <th scope="row">
                             <label for="dislike404_api_token">
-                                <?php esc_html_e('API Token', 'dislike404'); ?>
+                                <?php esc_html_e('API Token', 'dislike404-broken-link-checker'); ?>
                             </label>
                         </th>
                         <td>
@@ -120,7 +120,7 @@ class Dislike404_Admin
                                 <?php
                                 echo wp_kses_post(sprintf(
                                     /* translators: %s: link to dislike404.com profile */
-                                    __('Generate your API token in your %s profile settings.', 'dislike404'),
+                                    __('Generate your API token in your %s profile settings.', 'dislike404-broken-link-checker'),
                                     '<a href="https://dislike404.com/user/profile" target="_blank" rel="noopener noreferrer">dislike404.com</a>'
                                 ));
                                 ?>
@@ -138,20 +138,20 @@ class Dislike404_Admin
                         <tr>
                             <th scope="row">
                                 <label for="dislike404_selected_url_uuid">
-                                    <?php esc_html_e('Website to Scan', 'dislike404'); ?>
+                                    <?php esc_html_e('Website to Scan', 'dislike404-broken-link-checker'); ?>
                                 </label>
                             </th>
                             <td>
                                 <?php if (empty($urls)) : ?>
                                     <p class="description">
-                                        <?php esc_html_e('No websites found in your dislike404 account. Please add one first.', 'dislike404'); ?>
+                                        <?php esc_html_e('No websites found in your dislike404 account. Please add one first.', 'dislike404-broken-link-checker'); ?>
                                     </p>
                                 <?php else : ?>
                                     <select
                                         id="dislike404_selected_url_uuid"
                                         name="<?php echo esc_attr(DISLIKE404_OPTION_KEY); ?>[selected_url_uuid]"
                                         class="regular-text">
-                                        <option value="">— <?php esc_html_e('Select a website', 'dislike404'); ?> —</option>
+                                        <option value="">— <?php esc_html_e('Select a website', 'dislike404-broken-link-checker'); ?> —</option>
                                         <?php foreach ($urls as $url_entry) :
                                             // Skip entries with missing or malformed data.
                                             if (empty($url_entry['uuid']) || ! preg_match('/^[0-9a-f\-]{36}$/i', $url_entry['uuid'])) {
@@ -166,7 +166,7 @@ class Dislike404_Admin
                                                 <?php selected($selected_uuid, $url_entry['uuid']); ?>>
                                                 <?php echo esc_html($url_entry['url']); ?>
                                                 <?php if (empty($url_entry['verified'])) : ?>
-                                                    (<?php esc_html_e('unverified', 'dislike404'); ?>)
+                                                    (<?php esc_html_e('unverified', 'dislike404-broken-link-checker'); ?>)
                                                 <?php endif; ?>
                                             </option>
                                         <?php endforeach; ?>
@@ -178,7 +178,7 @@ class Dislike404_Admin
                         <!-- Admin Bar Toggle -->
                         <tr>
                             <th scope="row">
-                                <?php esc_html_e('Admin Bar Button', 'dislike404'); ?>
+                                <?php esc_html_e('Admin Bar Button', 'dislike404-broken-link-checker'); ?>
                             </th>
                             <td>
                                 <label>
@@ -187,7 +187,7 @@ class Dislike404_Admin
                                         name="<?php echo esc_attr(DISLIKE404_OPTION_KEY); ?>[show_in_admin_bar]"
                                         value="1"
                                         <?php checked($show_in_bar); ?>>
-                                    <?php esc_html_e('Show "Scan Now" button in the WordPress admin bar', 'dislike404'); ?>
+                                    <?php esc_html_e('Show "Scan Now" button in the WordPress admin bar', 'dislike404-broken-link-checker'); ?>
                                 </label>
                             </td>
                         </tr>
@@ -195,23 +195,23 @@ class Dislike404_Admin
 
                 </table>
 
-                <?php submit_button(__('Save Settings', 'dislike404')); ?>
+                <?php submit_button(__('Save Settings', 'dislike404-broken-link-checker')); ?>
             </form>
 
             <!-- Manual Scan Now on Settings Page -->
             <?php if ($api_token && $selected_uuid && ! $api_error) : ?>
                 <hr>
-                <h2><?php esc_html_e('Scan Now', 'dislike404'); ?></h2>
-                <p><?php esc_html_e('Start a scan for the selected website.', 'dislike404'); ?></p>
+                <h2><?php esc_html_e('Scan Now', 'dislike404-broken-link-checker'); ?></h2>
+                <p><?php esc_html_e('Start a scan for the selected website.', 'dislike404-broken-link-checker'); ?></p>
                 <button
                     id="dislike404-trigger-scan-btn"
                     class="button button-primary "
                     data-uuid="<?php echo esc_attr($selected_uuid); ?>">
-                    <?php esc_html_e('▶ Run Scan Now', 'dislike404'); ?>
+                    <?php esc_html_e('▶ Run Scan Now', 'dislike404-broken-link-checker'); ?>
                 </button>
 
                 <div id="dislike404-last-scan" style="margin-top:16px;display:none;">
-                    <strong><?php esc_html_e('Last scan result:', 'dislike404'); ?></strong><br>
+                    <strong><?php esc_html_e('Last scan result:', 'dislike404-broken-link-checker'); ?></strong><br>
                     <span id="dislike404-scan-status" style="margin-top:4px;display:inline-block;"></span>
                 </div>
             <?php endif; ?>
@@ -269,7 +269,7 @@ class Dislike404_Admin
         check_ajax_referer('dislike404_trigger_scan', 'nonce');
 
         if (! current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('Insufficient permissions.', 'dislike404')], 403);
+            wp_send_json_error(['message' => __('Insufficient permissions.', 'dislike404-broken-link-checker')], 403);
         }
 
         $settings = $this->get_settings();
@@ -277,11 +277,11 @@ class Dislike404_Admin
         $uuid      = sanitize_text_field(wp_unslash($_POST['uuid'] ?? ''));
 
         if (! $api_token) {
-            wp_send_json_error(['message' => __('No API token configured.', 'dislike404')]);
+            wp_send_json_error(['message' => __('No API token configured.', 'dislike404-broken-link-checker')]);
         }
 
         if (! preg_match('/^[0-9a-f\-]{36}$/i', $uuid)) {
-            wp_send_json_error(['message' => __('Invalid URL UUID.', 'dislike404')]);
+            wp_send_json_error(['message' => __('Invalid URL UUID.', 'dislike404-broken-link-checker')]);
         }
 
         $api    = new Dislike404_API($api_token);
@@ -318,15 +318,15 @@ class Dislike404_Admin
             'nonce'    => wp_create_nonce('dislike404_trigger_scan'),
             'poll_nonce' => wp_create_nonce('dislike404_scan_status'),
             'i18n'     => [
-                'idle'          => __('No previous scan found.', 'dislike404'),
-                'initiating'    => __('Starting scan...', 'dislike404'),
-                'running'       => __('Scan in Progress:', 'dislike404'),
-                'no_errors'     => __('No errors found', 'dislike404'),
-                'errors_found'  => __('error(s) found', 'dislike404'),
-                'pages_crawled' => __('pages crawled', 'dislike404'),
-                'view_report'   => __('View report', 'dislike404'),
-                'error'         => __('Something went wrong. Please try again.', 'dislike404'),
-                'error_auth'    => __('Invalid API token. Please check your plugin settings.', 'dislike404'),
+                'idle'          => __('No previous scan found.', 'dislike404-broken-link-checker'),
+                'initiating'    => __('Starting scan...', 'dislike404-broken-link-checker'),
+                'running'       => __('Scan in Progress:', 'dislike404-broken-link-checker'),
+                'no_errors'     => __('No errors found', 'dislike404-broken-link-checker'),
+                'errors_found'  => __('error(s) found', 'dislike404-broken-link-checker'),
+                'pages_crawled' => __('pages crawled', 'dislike404-broken-link-checker'),
+                'view_report'   => __('View report', 'dislike404-broken-link-checker'),
+                'error'         => __('Something went wrong. Please try again.', 'dislike404-broken-link-checker'),
+                'error_auth'    => __('Invalid API token. Please check your plugin settings.', 'dislike404-broken-link-checker'),
             ],
         ]);
     }
@@ -349,7 +349,7 @@ class Dislike404_Admin
         check_ajax_referer('dislike404_scan_status', 'nonce');
 
         if (! current_user_can('manage_options')) {
-            wp_send_json_error(['message' => __('Insufficient permissions.', 'dislike404')], 403);
+            wp_send_json_error(['message' => __('Insufficient permissions.', 'dislike404-broken-link-checker')], 403);
         }
 
         $settings  = $this->get_settings();
@@ -357,11 +357,11 @@ class Dislike404_Admin
         $uuid      = sanitize_text_field(wp_unslash($_POST['uuid'] ?? ''));
 
         if (! $api_token) {
-            wp_send_json_error(['message' => __('No API token configured.', 'dislike404')]);
+            wp_send_json_error(['message' => __('No API token configured.', 'dislike404-broken-link-checker')]);
         }
 
         if (! preg_match('/^[0-9a-f\-]{36}$/i', $uuid)) {
-            wp_send_json_error(['message' => __('Invalid URL UUID.', 'dislike404')]);
+            wp_send_json_error(['message' => __('Invalid URL UUID.', 'dislike404-broken-link-checker')]);
         }
 
         $api    = new Dislike404_API($api_token);

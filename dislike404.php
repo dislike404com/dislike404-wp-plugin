@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:       dislike404.com Broken Link Checker
- * Plugin URI:        https://dislike404.com
+ * Plugin URI:        https://dislike404.com/guides/wordpress-plugin/getting-started-with-the-wordpress-plugin
  * Description:       Connect your WordPress site to dislike404.com and run 404 checks directly from your admin panel.
  * Version:           1.0.0
  * Requires at least: 6.0
@@ -11,7 +11,7 @@
  * Author URI:        https://dislike404.com
  * License:           MIT
  * License URI:       https://opensource.org/licenses/MIT
- * Text Domain:       dislike404
+ * Text Domain:       dislike404-broken-link-checker
  */
 
 if (! defined('ABSPATH')) {
@@ -41,7 +41,7 @@ require_once DISLIKE404_PLUGIN_DIR . 'includes/class-dislike404-admin-bar.php';
 if (is_admin()) {
     add_filter('plugin_action_links_' . plugin_basename(DISLIKE404_PLUGIN_FILE), function (array $links): array {
         $settings_link = '<a href="' . admin_url('options-general.php?page=dislike404') . '">'
-            . __('Settings', 'dislike404')
+            . __('Settings', 'dislike404-broken-link-checker')
             . '</a>';
 
         array_unshift($links, $settings_link);
