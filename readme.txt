@@ -4,7 +4,7 @@ Tags: broken links, broken link checker, 404, link checker, website monitoring
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.0
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: MIT
 License URI: https://opensource.org/licenses/MIT
 
