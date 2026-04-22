@@ -14,7 +14,7 @@ jobs:
       - name: Deploy to wordpress.org SVN
         uses: 10up/action-wordpress-plugin-deploy@stable
         env:
-          WPORG_USERNAME: ${{ secrets.WPORG_USERNAME }}
-          WPORG_PASSWORD: ${{ secrets.WPORG_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.WPORG_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.WPORG_PASSWORD }}
           SLUG: dislike404-broken-link-checker
           ASSETS_DIR: .wordpress-org
