@@ -1,5 +1,5 @@
 === dislike404.com Broken Link Checker ===
-Contributors: dislike404com
+Contributors: michaelrenz
 Tags: broken links, broken link checker, 404, link checker, website monitoring
 Requires at least: 6.0
 Tested up to: 6.9
