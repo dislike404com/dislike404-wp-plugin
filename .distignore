@@ -1,3 +1,5 @@
 .distignore
+.git
+.gitattributes
 .github
 .wordpress-org
