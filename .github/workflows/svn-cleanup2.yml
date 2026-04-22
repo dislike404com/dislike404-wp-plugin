@@ -1,0 +1,32 @@
+name: SVN Cleanup 2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SVN
+        run: sudo apt-get install -y subversion
+
+      - name: Checkout SVN trunk
+        run: |
+          svn checkout https://plugins.svn.wordpress.org/dislike404-broken-link-checker/trunk /tmp/svn-trunk \
+            --username "${{ secrets.WPORG_USERNAME }}" \
+            --password "${{ secrets.WPORG_PASSWORD }}" \
+            --no-auth-cache --non-interactive
+
+      - name: Remove .gitattributes from SVN
+        run: |
+          cd /tmp/svn-trunk
+          svn delete .gitattributes --force
+          svn status
+
+      - name: Commit cleanup
+        run: |
+          cd /tmp/svn-trunk
+          svn commit -m "Remove .gitattributes (accidentally included in initial deploy)" \
+            --username "${{ secrets.WPORG_USERNAME }}" \
+            --password "${{ secrets.WPORG_PASSWORD }}" \
+            --no-auth-cache --non-interactive
