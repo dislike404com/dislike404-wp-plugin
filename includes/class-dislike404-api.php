@@ -65,6 +65,23 @@ class Dislike404_API
     }
 
     /**
+     * Trigger ownership verification for the given URL UUID.
+     * The server will fetch /dislike404-verification.txt from the domain and check the code.
+     *
+     * @param  string $uuid
+     * @return array{success: bool, message?: string}
+     */
+    public function verify_url(string $uuid): array
+    {
+        $response = wp_remote_post(
+            DISLIKE404_API_BASE . '/urls/' . rawurlencode($uuid) . '/verify',
+            $this->build_request_args()
+        );
+
+        return $this->parse_response($response);
+    }
+
+    /**
      * Poll the current scan status for the given URL UUID.
      *
      * @param  string $uuid

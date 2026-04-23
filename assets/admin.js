@@ -4,6 +4,44 @@
 
     $(function () {
 
+        // ---- Domain hidden-field sync ----
+        // Keep the domain field in sync when the user changes the URL dropdown.
+        $('#dislike404_selected_url_uuid').on('change', function () {
+            const domain = $(this).find(':selected').data('domain') || '';
+            $('#dislike404_selected_url_domain').val(domain);
+        });
+
+        // ---- Verify button ----
+        const $verifyBtn    = $('#dislike404-verify-btn');
+        const $verifyStatus = $('#dislike404-verify-status');
+
+        if ($verifyBtn.length) {
+            $verifyBtn.on('click', function () {
+                $verifyBtn.prop('disabled', true);
+                $verifyStatus.show().text(dislike404Ajax.i18n.verifying).css('color', '#666');
+
+                $.post(dislike404Ajax.ajax_url, {
+                    action: 'dislike404_verify_url',
+                    nonce:  dislike404Ajax.verify_nonce,
+                    uuid:   $verifyBtn.data('uuid'),
+                })
+                    .done(function (response) {
+                        if (response.success) {
+                            $verifyStatus.text(dislike404Ajax.i18n.verify_success).css('color', '#00a32a');
+                            setTimeout(function () { location.reload(); }, 1500);
+                        } else {
+                            $verifyStatus.text(dislike404Ajax.i18n.verify_error).css('color', '#d63638');
+                            $verifyBtn.prop('disabled', false);
+                        }
+                    })
+                    .fail(function () {
+                        $verifyStatus.text(dislike404Ajax.i18n.verify_error).css('color', '#d63638');
+                        $verifyBtn.prop('disabled', false);
+                    });
+            });
+        }
+
+        // ---- Scan button ----
         const $btn = $('#dislike404-trigger-scan-btn');
         const $status = $('#dislike404-scan-status');
         if (!$btn.length) {

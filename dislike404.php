@@ -54,11 +54,39 @@ if (is_admin()) {
  */
 function dislike404_init(): void
 {
-$admin = new Dislike404_Admin();
+    $admin = new Dislike404_Admin();
     $admin->init();
 
     $admin_bar = new Dislike404_Admin_Bar();
     $admin_bar->init();
 }
 add_action('plugins_loaded', 'dislike404_init');
+
+/**
+ * Respond to ?dislike404_verify=1 with the verification code.
+ * Works with any permalink structure — no rewrite rules needed.
+ */
+add_action('init', function (): void {
+    // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+    if (! isset($_GET['dislike404_verify'])) {
+        return;
+    }
+
+    $settings = Dislike404_Admin::get_settings();
+    $uuid     = $settings['selected_url_uuid']   ?? '';
+    $domain   = $settings['selected_url_domain'] ?? '';
+
+    if (! $uuid || ! $domain) {
+        status_header(404);
+        exit;
+    }
+
+    $code = hash('sha256', $domain . '|' . $uuid);
+
+    header('Content-Type: text/plain; charset=utf-8');
+    header('Cache-Control: no-store, no-cache');
+    // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo $code;
+    exit;
+});
 
