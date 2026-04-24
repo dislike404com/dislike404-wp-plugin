@@ -3,8 +3,8 @@
 /**
  * Plugin Name:       dislike404.com Broken Link Checker
  * Plugin URI:        https://dislike404.com/guides/wordpress-plugin/getting-started-with-the-wordpress-plugin
- * Description:       Connect your WordPress site to dislike404.com and run 404 checks directly from your admin panel.
- * Version:           1.0.1
+ * Description:       Free automatic broken link checker for WordPress — detect 404 errors and HTTP issues, get email alerts and trigger scans from your admin panel.
+ * Version:           1.0.2
  * Requires at least: 6.0
  * Requires PHP:      8.0
  * Author:            dislike404.com
