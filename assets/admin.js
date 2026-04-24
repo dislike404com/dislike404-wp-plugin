@@ -15,6 +15,19 @@
         const $verifyBtn    = $('#dislike404-verify-btn');
         const $verifyStatus = $('#dislike404-verify-status');
 
+        function showVerifyError() {
+            $verifyStatus.empty().css('color', '#d63638').show();
+            $verifyStatus.append($('<span>').text(dislike404Ajax.i18n.verify_error));
+            if (dislike404Ajax.verify_guide_url) {
+                $verifyStatus.append(' ');
+                $verifyStatus.append(
+                    $('<a>').attr({ href: dislike404Ajax.verify_guide_url, target: '_blank', rel: 'noopener noreferrer' })
+                            .text(dislike404Ajax.i18n.verify_guide_label)
+                );
+            }
+            $verifyBtn.prop('disabled', false);
+        }
+
         if ($verifyBtn.length) {
             $verifyBtn.on('click', function () {
                 $verifyBtn.prop('disabled', true);
@@ -30,13 +43,11 @@
                             $verifyStatus.text(dislike404Ajax.i18n.verify_success).css('color', '#00a32a');
                             setTimeout(function () { location.reload(); }, 1500);
                         } else {
-                            $verifyStatus.text(dislike404Ajax.i18n.verify_error).css('color', '#d63638');
-                            $verifyBtn.prop('disabled', false);
+                            showVerifyError();
                         }
                     })
                     .fail(function () {
-                        $verifyStatus.text(dislike404Ajax.i18n.verify_error).css('color', '#d63638');
-                        $verifyBtn.prop('disabled', false);
+                        showVerifyError();
                     });
             });
         }

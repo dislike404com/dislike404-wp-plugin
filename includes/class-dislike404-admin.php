@@ -227,6 +227,17 @@ class Dislike404_Admin
                 <p>
                     <?php esc_html_e('Your website is not yet verified. Because the plugin is installed here, verification is automatic — just click the button below.', 'dislike404-broken-link-checker'); ?>
                 </p>
+                <p>
+                    <?php
+                    echo wp_kses_post(sprintf(
+                        /* translators: %s: link to the verification guide */
+                        __('This only works when WordPress is installed in the root directory of your domain. If that is not the case, please verify manually. %s', 'dislike404-broken-link-checker'),
+                        '<a href="https://dislike404.com/guides/getting-started/how-to-verify-your-website" target="_blank" rel="noopener noreferrer">'
+                            . esc_html__('Learn more', 'dislike404-broken-link-checker')
+                            . '</a>'
+                    ));
+                    ?>
+                </p>
                 <button
                     id="dislike404-verify-btn"
                     class="button button-secondary"
@@ -356,23 +367,25 @@ class Dislike404_Admin
         );
 
         wp_localize_script('dislike404-admin', 'dislike404Ajax', [
-            'ajax_url'    => admin_url('admin-ajax.php'),
-            'nonce'       => wp_create_nonce('dislike404_trigger_scan'),
-            'poll_nonce'  => wp_create_nonce('dislike404_scan_status'),
-            'verify_nonce' => wp_create_nonce('dislike404_verify_url'),
-            'i18n'        => [
-                'idle'           => __('No previous scan found.', 'dislike404-broken-link-checker'),
-                'initiating'     => __('Starting scan...', 'dislike404-broken-link-checker'),
-                'running'        => __('Scan in Progress:', 'dislike404-broken-link-checker'),
-                'no_errors'      => __('No errors found', 'dislike404-broken-link-checker'),
-                'errors_found'   => __('error(s) found', 'dislike404-broken-link-checker'),
-                'pages_crawled'  => __('pages crawled', 'dislike404-broken-link-checker'),
-                'view_report'    => __('View report', 'dislike404-broken-link-checker'),
-                'error'          => __('Something went wrong. Please try again.', 'dislike404-broken-link-checker'),
-                'error_auth'     => __('Invalid API token. Please check your plugin settings.', 'dislike404-broken-link-checker'),
-                'verifying'      => __('Verifying…', 'dislike404-broken-link-checker'),
-                'verify_success' => __('Verified! Reloading…', 'dislike404-broken-link-checker'),
-                'verify_error'   => __('Verification failed. Make sure the plugin is active and your settings are saved, then try again.', 'dislike404-broken-link-checker'),
+            'ajax_url'         => admin_url('admin-ajax.php'),
+            'nonce'            => wp_create_nonce('dislike404_trigger_scan'),
+            'poll_nonce'       => wp_create_nonce('dislike404_scan_status'),
+            'verify_nonce'     => wp_create_nonce('dislike404_verify_url'),
+            'verify_guide_url' => 'https://dislike404.com/guides/getting-started/how-to-verify-your-website',
+            'i18n'             => [
+                'idle'               => __('No previous scan found.', 'dislike404-broken-link-checker'),
+                'initiating'         => __('Starting scan...', 'dislike404-broken-link-checker'),
+                'running'            => __('Scan in Progress:', 'dislike404-broken-link-checker'),
+                'no_errors'          => __('No errors found', 'dislike404-broken-link-checker'),
+                'errors_found'       => __('error(s) found', 'dislike404-broken-link-checker'),
+                'pages_crawled'      => __('pages crawled', 'dislike404-broken-link-checker'),
+                'view_report'        => __('View report', 'dislike404-broken-link-checker'),
+                'error'              => __('Something went wrong. Please try again.', 'dislike404-broken-link-checker'),
+                'error_auth'         => __('Invalid API token. Please check your plugin settings.', 'dislike404-broken-link-checker'),
+                'verifying'          => __('Verifying…', 'dislike404-broken-link-checker'),
+                'verify_success'     => __('Verified! Reloading…', 'dislike404-broken-link-checker'),
+                'verify_error'       => __('Automatic verification only works when WordPress is installed in the root directory of your domain (e.g. example.com). If WordPress is installed in a subdirectory, please verify your website manually.', 'dislike404-broken-link-checker'),
+                'verify_guide_label' => __('Learn more', 'dislike404-broken-link-checker'),
             ],
         ]);
     }
